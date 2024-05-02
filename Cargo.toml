@@ -1,0 +1,24 @@
+[package]
+name = "vk-tutorial"
+version = "0.1.0"
+edition = "2021"
+
+[rust]
+debug = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1"
+log = "0.4"
+cgmath = "0.18"
+png = "0.17"
+pretty_env_logger = "0.5"
+thiserror = "1"
+tobj = { version = "3", features = ["log"] }
+winit = "0.29"
+vulkanalia = { version = "=0.23.0", features = [
+  "libloading",
+  "provisional",
+  "window",
+] }
