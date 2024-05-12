@@ -11,7 +11,7 @@ use vulkanalia::{
         ExtensionName, InstanceCreateFlags, InstanceCreateInfo, EXT_DEBUG_UTILS_EXTENSION, FALSE,
         KHR_GET_PHYSICAL_DEVICE_PROPERTIES2_EXTENSION, KHR_PORTABILITY_ENUMERATION_EXTENSION,
     },
-    window::{self as vk_window, get_required_instance_extensions},
+    window::get_required_instance_extensions,
     Instance, Version,
 };
 use winit::window::Window;
@@ -69,6 +69,11 @@ impl App {
     }
 
     pub unsafe fn destroy(&mut self) {
+        if VALIDATION_ENABLED {
+            self.instance
+                .destroy_debug_utils_messenger_ext(self.data.messenger, None);
+        }
+
         self.instance.destroy_instance(None)
     }
 }
